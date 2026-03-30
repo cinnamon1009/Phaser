@@ -29,11 +29,9 @@ const PhaserGame = forwardRef((props: Props, ref) => {
                 .setInteractive()
                 .setOrigin(0);
 
-              // 座標を計算して配置
               cell.setPosition(x * gridSize, y * gridSize);
 
               cell.on('pointerdown', () => {
-                // gameオブジェクトにカスタムプロパティとして持たせた値を使う
                 const currentType = (this.game as any).selectedTileType;
                 mapData[y][x] = currentType;
                 cell.setFillStyle(currentType === 1 ? 0xff0000 : 0x666666);
@@ -41,7 +39,6 @@ const PhaserGame = forwardRef((props: Props, ref) => {
               });
             }
           }
-          // シーンにデータを保持
           (this as any).mapData = mapData;
         }
       }
@@ -59,7 +56,6 @@ const PhaserGame = forwardRef((props: Props, ref) => {
     };
   }, []);
 
-  // ReactのStateが変わったらPhaser内の変数も更新する
   useEffect(() => {
     if (phaserInstance.current) {
       (phaserInstance.current as any).selectedTileType = props.selectedTile;
