@@ -1,2 +1,2 @@
 ●コマンド
-cd /d "D:\Phaser"
+cd /d D:\Phaser
