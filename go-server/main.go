@@ -74,7 +74,12 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// 画像ファイルにアクセスできるようにする
+	http.Handle("/uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads"))))
+	
+	http.HandleFunc("/api/upload", uploadHandler)
 	http.HandleFunc("/api/save-map", saveMapHandler)
+	
 	fmt.Println("Server starting at :8080...")
 	http.ListenAndServe(":8080", nil)
 }
